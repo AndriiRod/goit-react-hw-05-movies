@@ -25,7 +25,6 @@ const MovieDetails = () => {
     try {
       const getRequest = async () => {
         const response = await api.GetDetailsOfMovie(movieId);
-        console.log(response);
         setMovie(response);
         setStatus(Status.RESOLVED);
       };

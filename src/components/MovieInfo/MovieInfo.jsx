@@ -1,3 +1,5 @@
+import { Link, Outlet } from 'react-router-dom';
+
 const MovieInfo = ({ data }) => {
   const { original_title, vote_average, overview, genres, poster_path } = data;
 
@@ -13,6 +15,15 @@ const MovieInfo = ({ data }) => {
       <p>{overview}</p>
       <h2>Genires</h2>
       <p>{genres.map(genre => genre.name).join(', ')}</p>
+      <ul>
+        <li>
+          <Link to="cast">Cast</Link>
+        </li>
+        <li>
+          <Link to="reviews">Reviews</Link>
+        </li>
+      </ul>
+      <Outlet />
     </>
   );
 };
