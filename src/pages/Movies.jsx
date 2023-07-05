@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import SearchBar from 'components/SearchBar/';
