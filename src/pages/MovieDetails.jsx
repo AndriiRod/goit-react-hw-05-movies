@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams, Link, useLocation } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 
 import MovieInfo from 'components/MovieInfo/';
 import ErrorMessage from 'components/ErrorMessage/';
@@ -19,6 +19,9 @@ const MovieDetails = () => {
   const [status, setStatus] = useState(Status.IDLE);
   const [errorMessage, setErrorMessage] = useState();
   const { movieId } = useParams();
+  const location = useLocation();
+
+  const backLink = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     setStatus(Status.PENDING);
@@ -37,6 +40,7 @@ const MovieDetails = () => {
 
   return (
     <section>
+      <Link to={backLink.current}>Go Back</Link>
       {status === Status.PENDING && <Loader />}
       {status === Status.REJECTED && <ErrorMessage message={errorMessage} />}
       {status === Status.RESOLVED && <MovieInfo data={movie} />}

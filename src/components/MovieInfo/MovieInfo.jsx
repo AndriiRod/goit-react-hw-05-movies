@@ -1,4 +1,7 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Suspense } from 'react';
+
+import Loader from 'components/Loader/';
 
 const MovieInfo = ({ data }) => {
   const { original_title, vote_average, overview, genres, poster_path } = data;
@@ -23,7 +26,9 @@ const MovieInfo = ({ data }) => {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

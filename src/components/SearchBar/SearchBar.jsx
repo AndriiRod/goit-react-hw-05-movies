@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-const SearchBar = () => {
+
+const SearchBar = ({ setNewSearchQuery }) => {
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       input: '',
@@ -9,11 +9,7 @@ const SearchBar = () => {
 
   const onSubmit = data => {
     const formattedInput = data.input.toLowerCase().trim();
-    if (formattedInput === '') {
-      toast.info('Request cannot be empty');
-      return;
-    }
-    console.log(data);
+    setNewSearchQuery(formattedInput);
     reset();
   };
 
