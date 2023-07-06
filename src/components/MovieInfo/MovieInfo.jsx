@@ -3,6 +3,8 @@ import { Suspense } from 'react';
 
 import Loader from 'components/Loader/';
 
+const placehold = 'https://placehold.co/400x600?text=Not+Found';
+
 const MovieInfo = ({ data }) => {
   const { original_title, vote_average, overview, genres, poster_path } = data;
 
@@ -10,7 +12,11 @@ const MovieInfo = ({ data }) => {
     <>
       <img
         width="400px"
-        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+        src={
+          poster_path
+            ? `https://image.tmdb.org/t/p/w500${poster_path}`
+            : placehold
+        }
         alt={original_title}
       />
       <p>User Score:{vote_average}</p>
